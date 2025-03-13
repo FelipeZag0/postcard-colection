@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Container } from '@mui/material';
 import './App.css';
+import Navigation from './components/Navigation/navigation';
+import Home from './pages/Home';
+import ListPostcard from './pages/ListPostcard';
+import Postcard from './pages/Postcard';
+import AddPostcard from './pages/AddPostcard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navigation />
+        <Container maxWidth="md">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/list" element={<ListPostcard />} />
+            <Route path='/addpostcard' element={<AddPostcard />} />
+            <Route path="/postcard/:id" element={<Postcard />} />
+          </Routes>
+        </Container>
+      </div>
+    </Router>
   );
 }
 
